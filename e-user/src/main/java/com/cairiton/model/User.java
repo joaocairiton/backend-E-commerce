@@ -27,6 +27,9 @@ public class User {
 	@NotBlank
 	@Size(max = 60)
 	private String name;
+	
+	@NotBlank
+	@Size(max = 60)
 	private String password;
 	
 	@NotBlank
