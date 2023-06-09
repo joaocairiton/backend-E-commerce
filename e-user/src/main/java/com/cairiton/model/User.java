@@ -1,6 +1,8 @@
 package com.cairiton.model;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,12 +16,15 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
 @Entity
-public class User{
+public class User implements UserDetails{
 	
 	
 	@Id
@@ -145,6 +150,60 @@ public class User{
 
 	public void setUserRoles(Set<UserRol> userRoles) {
 		this.userRoles = userRoles;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, enable, id, name, password, perfil, telefone, userRoles, username);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(email, other.email) && enable == other.enable && Objects.equals(id, other.id)
+				&& Objects.equals(name, other.name) && Objects.equals(password, other.password)
+				&& Objects.equals(perfil, other.perfil) && Objects.equals(telefone, other.telefone)
+				&& Objects.equals(userRoles, other.userRoles) && Objects.equals(username, other.username);
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		 Set<Authority> authority = new HashSet<>();
+		 
+		 this.userRoles.forEach(userRol -> {
+			 authority.add(new Authority(userRol.getRol().getRolName()));
+	        });
+	        return authority;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 	
