@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,11 +26,9 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-	
+
 	private UserRepository userRepository;
 	private UserService userService;
-	
-	
 
 	@GetMapping
 	public List<User> listar() {
@@ -48,23 +47,29 @@ public class UserController {
 	public User adicionar(@Valid @RequestBody User user) {
 		return userService.salvar(user);
 	}
-	
-	
+
 	@PutMapping("/{userId}")
 	public ResponseEntity<User> atualizar(@PathVariable Long userId, @Valid @RequestBody User user) {
-		
+
 		if (!userRepository.existsById(userId)) {
 			return ResponseEntity.notFound().build();
 		}
 		user.setId(userId);
 		user = userService.salvar(user);
-		
+
 		return ResponseEntity.ok(user);
-		
+
 	}
-	
-	
-	
-	
+
+	@DeleteMapping("/{userId}")
+	public ResponseEntity<Void> excluir(@PathVariable Long userId) {
+
+		if (!userRepository.existsById(userId)) {
+			return ResponseEntity.notFound().build();
+		}
+		userService.remover(userId);
+		return ResponseEntity.noContent().build();
+
+	}
 
 }

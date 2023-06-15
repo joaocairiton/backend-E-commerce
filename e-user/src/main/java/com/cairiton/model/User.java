@@ -12,25 +12,27 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+
+
 @Entity
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User {
 	
 	
 	@Id
-	@EqualsAndHashCode.Include
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotBlank
 	@Size(max = 60)
-	private String name;
+	private String username;
 	
 	@NotBlank
 	@Size(max = 60)
 	private String password;
+	
+	@NotBlank
+	@Size(max = 60)
+	private String name;
 	
 	@NotBlank
 	@Email
@@ -40,6 +42,12 @@ public class User {
 	@NotBlank
 	@Size(max = 20)
 	private String telefone;
+	
+	private boolean enable = true;
+	
+	
+	
+
 	
 
 }
