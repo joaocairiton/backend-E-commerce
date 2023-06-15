@@ -55,6 +55,8 @@ public class User{
     @JsonIgnore
     private Set<UserRol> userRoles = new HashSet<>();
 	
+	
+	
 	 public User(){
 
 	 }
