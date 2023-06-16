@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService{
             System.out.println("User already exists");
             throw new Exception("The user is already present");
         }else{
-            for(UserRol userRol:userRoles){
+            for(UserRol userRol: userRoles){
                 rolRepository.save(userRol.getRol());
             }
             user.getUserRoles().addAll(userRoles);

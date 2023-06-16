@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +26,6 @@ import com.cairiton.model.UserRol;
 import com.cairiton.repository.UserRepository;
 import com.cairiton.services.UserService;
 
-import lombok.AllArgsConstructor;
-
 @RestController
 @RequestMapping("/users")
 @CrossOrigin("*")
@@ -38,6 +37,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@GetMapping
 	public List<User> listUsers() {	
@@ -50,25 +52,22 @@ public class UserController {
 	        return userService.getUser(username);
 	    }
 
-	@PostMapping("/")
-	@ResponseStatus(HttpStatus.CREATED)
-	public User save(@Valid @RequestBody User user) throws Exception {
-		user.setPerfil(null);
-		Set<UserRol> userRoles = new HashSet<>();
-		
-		
-		Rol rol = new Rol();
-        rol.setRolId(2L);
-        rol.setRolName("NORMAL");
-        
-        
-        UserRol userRol = new UserRol();
-        userRol.setUser(user);
-        userRol.setRol(rol);
-        
-        userRoles.add(userRol);
-		return userService.saveUser(user, userRoles);
-	}
+	 @PostMapping("/")
+	 public User saveUser(@RequestBody User user) throws Exception{
+	        user.setPerfil("default.png");
+	        Set<UserRol> userRoles = new HashSet<>();
+
+	        Rol rol = new Rol();
+	        rol.setRolId(2L);
+	        rol.setRolName("NORMAL");
+
+	        UserRol userRol = new UserRol();
+	        userRol.setUser(user);
+	        userRol.setRol(rol);
+
+	        userRoles.add(userRol);
+	        return userService.saveUser(user,userRoles);
+	    }
 	
 	
 	

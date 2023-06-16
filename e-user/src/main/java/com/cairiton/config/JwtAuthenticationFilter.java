@@ -22,7 +22,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter{
 	
-	 @Autowired
+		@Autowired
 	    private UserDetailsServiceImpl userDetailsService;
 
 	    @Autowired
@@ -38,14 +38,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 		     if(requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
 		    	 jwtToken = requestTokenHeader.substring(7);
 		    	 
-		    	 try{
-		                username = this.jwtUtils.extractUsername(jwtToken);
-		            }catch (ExpiredJwtException exception) {
-		            	System.out.println("The token has expired");
+		     try{
+		          username = this.jwtUtils.extractUsername(jwtToken);
+		         }catch (ExpiredJwtException exception) {
+		          System.out.println("The token has expired");
 		            	
-		            }catch (Exception e){
-		                e.printStackTrace();
-		            }
+		         }catch (Exception e){
+		         e.printStackTrace();
+		         }
 		     }else{
 		            System.out.println("Invalid token, does not start with bearer string");
 		        }

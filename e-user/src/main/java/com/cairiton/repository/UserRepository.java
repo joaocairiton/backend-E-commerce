@@ -11,7 +11,7 @@ import com.cairiton.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	
-	 User findByUsername(String username);
+	 public User findByUsername(String username);
 	
 	List<User> findByName(String name);
 	

@@ -16,7 +16,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtUtils {
 	
 	
-	 private String SECRET_KEY = "portalFidido";
+	 private String SECRET_KEY = "fididoPort";
 
 	    public String extractUsername(String token) {
 	        return extractClaim(token, Claims::getSubject);

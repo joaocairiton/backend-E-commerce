@@ -2,7 +2,6 @@ package com.cairiton.model;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -24,9 +24,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
+@Table(name = "user")
 public class User implements UserDetails{
-	
-	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -42,25 +43,20 @@ public class User implements UserDetails{
 	@NotBlank
 	@Size(max = 60)
 	private String name;
-	
 	@NotBlank
 	@Email
 	@Size(max = 255)
 	private String email;
-	
 	@NotBlank
 	@Size(max = 20)
 	private String telefone;
-	
 	private boolean enable = true;
-	
 	private String perfil;
+	
 	
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
     @JsonIgnore
     private Set<UserRol> userRoles = new HashSet<>();
-	
-	
 	
 	 public User(){
 
@@ -152,34 +148,15 @@ public class User implements UserDetails{
 		this.userRoles = userRoles;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(email, enable, id, name, password, perfil, telefone, userRoles, username);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		return Objects.equals(email, other.email) && enable == other.enable && Objects.equals(id, other.id)
-				&& Objects.equals(name, other.name) && Objects.equals(password, other.password)
-				&& Objects.equals(perfil, other.perfil) && Objects.equals(telefone, other.telefone)
-				&& Objects.equals(userRoles, other.userRoles) && Objects.equals(username, other.username);
-	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		 Set<Authority> authority = new HashSet<>();
+		 Set<Authority> authorities = new HashSet<>();
 		 
 		 this.userRoles.forEach(userRol -> {
-			 authority.add(new Authority(userRol.getRol().getRolName()));
+			 authorities.add(new Authority(userRol.getRol().getRolName()));
 	        });
-	        return authority;
+	        return authorities;
 	}
 
 	@Override
@@ -202,10 +179,9 @@ public class User implements UserDetails{
 
 	@Override
 	public boolean isEnabled() {
-		
-		return true;
+		// TODO Auto-generated method stub
+		return enable;
 	}
-	
 	
 	
 	 
