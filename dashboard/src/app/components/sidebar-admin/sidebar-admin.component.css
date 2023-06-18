@@ -1,0 +1,71 @@
+*{
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+  
+    
+}
+img {
+    border-radius: 50px;
+    height: 75px;
+    width: 75px;
+    background: #fff;
+}
+mat-icon{
+    color: #8997ac;
+    font-family: 'Material Icons';
+    vertical-align: middle;
+}
+.navbar{
+    background: #142d55;
+    height: 100vh;
+}
+.top{
+  
+    padding: 8px;
+    margin-left: 160px;
+    font-size: 30px;
+}
+.user{
+    text-align: center;
+    font-weight: 800;
+    margin-bottom: 50px;
+    img{
+        margin-top: 16px;
+        width: 120px;
+        height: 120px;
+    }
+    .name{
+        color: white;
+    }
+    .mail{
+        margin-top: -10px;
+        color:  #697d95;
+    }
+}
+
+.menu-item{
+    margin: 0 10px 0 10px;
+    .menu-button{
+        display: block;
+        width: 100%;
+        position: relative;
+        display: flex;
+        padding-left: 40px;
+        margin-bottom: 10px;
+        
+
+    }
+    .menu-button span{
+        margin-left: 15px;
+        color: white;
+        
+    }
+    .menu-button:hover{
+        
+        background: #ffb038;
+    }
+    .menu-button:focus{
+        background: #ffb038;
+    }
+}

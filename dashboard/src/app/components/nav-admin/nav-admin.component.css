@@ -1,0 +1,22 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+  mat-toolbar{
+    background: #ffb703;
+  }
+  mat-divider{
+    background: #fff;
+    padding: 1px;
+    font-weight: normal;
+  }
+  a{
+    color: #000;
+    font-size: 16px;
+  }
+  a:hover{
+    color: #fff;
+  }
+
+  .example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }

@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+
+<section>
+  <div class = "container py-5">
+    <div class = "row">
+      <div class = "col-md-12 col-md-offset-4">
+        
+
+        
+
+
+        <form >
+          <div class="text-center">
+            <img src="" width = "100" height = "100">
+            <h1 class="text-center">Create Account</h1>
+          </div>
+          <mat-form-field class="full-width" id="item-1" appearance = "outline">
+            <mat-label>Login</mat-label>
+            <input  required  name = "username" matInput placeholder="">
+            <mat-hint>Login Unique</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field class="full-width " id="item-2"  appearance = "outline">
+            <mat-label>Password</mat-label>
+            <input  required  name = "password" type = "password" matInput placeholder="">
+          </mat-form-field>
+
+          <mat-form-field class="full-width" id="item-3" appearance = "outline">
+            <mat-label>Full name</mat-label>
+            <input  required  name = "name"  matInput placeholder="">
+          </mat-form-field>
+
+          <mat-form-field class="full-width" id="item-4"  appearance = "outline">
+            <mat-label>Email</mat-label>
+            <input  required  name = "email" type="email" matInput placeholder="">
+          </mat-form-field>
+
+          <mat-form-field class="full-width" id="item-5"  appearance = "outline">
+            <mat-label>Phone</mat-label>
+            <input  required name = "phone" matInput placeholder="">
+          </mat-form-field>
+
+          <div class = "text-center" id="item-6">
+            <button class="register" mat-raised-button color="primary">Register</button>
+            <button class="clear" type="reset" style = "margin-left: 20px;" mat-raised-button color="accent">Clear</button>
+          </div>
+        </form>
+        <br><br><br>
+      </div>
+    </div>
+  </div>
+</section>
+
