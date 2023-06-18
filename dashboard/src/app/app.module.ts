@@ -31,6 +31,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { AdminComponent } from './pages/admin/admin.component';
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
+import { NavUserComponent } from './components/nav-user/nav-user.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.
     UserDashboardComponent,
     NavAdminComponent,
     AdminComponent,
-    SidebarAdminComponent
+    SidebarAdminComponent,
+    NavUserComponent
   ],
   imports: [
     BrowserModule,

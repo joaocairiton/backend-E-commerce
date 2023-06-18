@@ -10,4 +10,8 @@ mat-grid-list{
   mat-grid-tile{
     margin-bottom: 20px;
   }
- 
+  mat-card{
+    height: 100px;
+    width: 200px;
+    margin: 0 10px;
+  }

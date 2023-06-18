@@ -55,6 +55,7 @@ public class UserController {
 	 @PostMapping("/")
 	 public User saveUser(@RequestBody User user) throws Exception{
 	        user.setPerfil("default.png");
+	        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
 	        Set<UserRol> userRoles = new HashSet<>();
 
 	        Rol rol = new Rol();

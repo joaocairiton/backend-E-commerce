@@ -1,0 +1,22 @@
+<mat-toolbar>
+    <button mat-icon-button >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>E-commerce</span>
+    <span class="spacer"></span>
+    <div>
+      <a mat-button [routerLink]="'/'"><mat-icon>home</mat-icon> Home </a>
+      <a *ngIf = "isLoggedIn" (click) = "logout()" style="margin-right: 50px" mat-icon-button><mat-icon>logout</mat-icon>Logout</a>
+      
+    </div>
+    <div>
+        <img src="" alt="">
+        <a *ngIf = "isLoggedIn && user" mat-button style="margin-right: 10px" ><mat-icon>person</mat-icon>{{ user.username }}</a>
+    </div>
+   
+   
+  </mat-toolbar>
+
+
+  
+  <mat-divider></mat-divider>
