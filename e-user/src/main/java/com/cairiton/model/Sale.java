@@ -1,5 +1,7 @@
 package com.cairiton.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,9 @@ public class Sale {
 	private Long id;
 	
 	private Double amount_to_pay;
+	
+	
+	private Integer amount;
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -62,9 +67,13 @@ public class Sale {
 	}
 
 
-	public Sale(Long id, User user, Product product) {
+	
+
+	public Sale(Long id, Double amount_to_pay, Integer amount, User user, Product product) {
 		super();
 		this.id = id;
+		this.amount_to_pay = amount_to_pay;
+		this.amount = amount;
 		this.user = user;
 		this.product = product;
 	}
@@ -78,7 +87,20 @@ public class Sale {
 	public void setAmount_to_pay(Double amount_to_pay) {
 		this.amount_to_pay = amount_to_pay;
 	}
+
+
+	public Integer getAmount() {
+		return amount;
+	}
+
+
+	public void setAmount(Integer amount) {
+		this.amount = amount;
+	}
+	public double getTotal() {
+		return amount * amount_to_pay;
 	
+	}
 	
 	
 	

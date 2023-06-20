@@ -1,6 +1,6 @@
 
 <section class="container">
-<mat-grid-list cols="4" rowHeight="150px">
+<mat-grid-list cols="4" rowHeight="162px">
 
     <mat-grid-tile [colspan]="4" [rowspan]="1" >
       <mat-card class="users">
@@ -20,15 +20,16 @@
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="4" [rowspan]="2" [style.background]="'yellow'">
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="2" >
-  
+
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2" [rowspan]="2" >
      
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="4" [rowspan]="3"  [style.background]="'blue'">
- 
+    <mat-grid-tile [colspan]="2" [rowspan]="2" >
+    
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="3">
+      <app-user-list></app-user-list>
     </mat-grid-tile>
     <mat-divider></mat-divider>
     <mat-grid-tile [colspan]="4" [rowspan]="3" [style.background]="'tomato'">

@@ -1,0 +1,51 @@
+<div mat-dialog-title>
+    <h1>Add new User</h1>
+</div>
+
+<div mat-dialog-content>
+<form (ngSubmit)="onSubmit()">
+    <p>
+        <mat-form-field appearance="outline">
+          <mat-label>User-Name</mat-label>
+          <input [(ngModel)] = "user.username" formControlName="username" matInput placeholder="User-Name">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+        <mat-form-field type="password" name="password" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input [(ngModel)] = "user.password" formControlName="password" matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="input-name" appearance="outline">
+          <mat-label>Name Complete</mat-label>
+          <input [(ngModel)] = "user.name" formControlName="name" matInput placeholder="Name Complete">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your email</mat-label>
+          <input [(ngModel)] = "user.email" formControlName="email" matInput placeholder="Enter your email">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Phone number</mat-label>
+            <input [(ngModel)] = "user.telefone" formControlName="telefone" matInput placeholder="Phone number">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+      </p>
+</form>
+      <div class="example-button-row"> 
+        <button mat-raised-button mat-dialog-close color="warn">Cancel</button>    
+        <button mat-raised-button color="primary" >Save</button> 
+       
+      </div>
+  </div>
+
+

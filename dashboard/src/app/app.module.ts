@@ -14,7 +14,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list'
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './pages/signup/signup.component';
 
@@ -23,7 +23,7 @@ import { LoginComponent } from './pages/login/login.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSelectModule} from '@angular/material/select';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
-import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
+import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { authInterceptorProviders } from './service/auth.interceptor';
 import { NavAdminComponent } from './components/nav-admin/nav-admin.component';
@@ -32,6 +32,16 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { AdminComponent } from './pages/admin/admin.component';
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 import { NavUserComponent } from './components/nav-user/nav-user.component';
+import { UserComponent } from './pages/user/user/user.component';
+import {MatSliderModule} from '@angular/material/slider';
+import { ProductComponent } from './pages/products/product/product.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {  MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { EditFormComponent } from './pages/edit-form/edit-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddFormComponent } from './pages/add-form/add-form.component';
 
 
 @NgModule({
@@ -46,7 +56,12 @@ import { NavUserComponent } from './components/nav-user/nav-user.component';
     NavAdminComponent,
     AdminComponent,
     SidebarAdminComponent,
-    NavUserComponent
+    NavUserComponent,
+    UserComponent,
+    ProductComponent,
+    UserListComponent,
+    EditFormComponent,
+    AddFormComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +69,7 @@ import { NavUserComponent } from './components/nav-user/nav-user.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
 
     MatToolbarModule,
     MatIconModule,
@@ -66,7 +82,11 @@ import { NavUserComponent } from './components/nav-user/nav-user.component';
     MatSelectModule,
     MatSnackBarModule,
     MatSidenavModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSliderModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [
     authInterceptorProviders
