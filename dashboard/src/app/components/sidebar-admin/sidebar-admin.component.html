@@ -1,40 +1,34 @@
 <div class="navbar">
-    <div class="top">
-        <mat-icon [inline]='true'>notifications_none</mat-icon>
-    </div>
-    <div class="user">
-       <img src="" alt="">
-        <h4 class="name">{{user.name}}</h4>
-        <p class="mail">{{user.email}}</p>
-    </div>
-    <div class="menu">
-      
-        <mat-divider></mat-divider>
-        <div class="menu-item">
-            <button mat-button class="menu-button" [routerLink]="['/admin']">
-                <mat-icon>dashboard</mat-icon>
-                <span>Dashboard</span>
-            </button>
-            <button mat-button class="menu-button" [routerLink]="['/posts']">
-                <mat-icon>message</mat-icon>
-                <span>Posts</span>
-            </button>
-            <button mat-button class="menu-button">
-                <mat-icon>comment</mat-icon>
-                <span>Comments</span>
-            </button>
-            <button mat-button class="menu-button">
-                <mat-icon>pages</mat-icon>
-                <span>Pages</span>
-            </button>
-            <button mat-button class="menu-button">
-                <mat-icon>settings</mat-icon>
-                <span>Settings</span>
-            </button>
-            <button (click)="logout()" mat-button class="menu-button">
-                <mat-icon>logout</mat-icon>
-                <span>Logout</span>
-            </button>
-        </div>
-    </div>
+  <div class="top">
+    <mat-icon [inline]="true">notifications_none</mat-icon>
+  </div>
+  <div class="user">
+    <img src="" alt="" />
+    <h4 class="name">{{ user.name }}</h4>
+    <p class="mail">{{ user.email }}</p>
+  </div>
+  <div class="menu">
+    <mat-divider></mat-divider>
+
+    <mat-list role="list" class="menu-item">
+      <button routerLink="/admin" mat-list-item class="menu-button">
+        <mat-icon mat-list-icon>home</mat-icon> Dashboard
+      </button>
+
+      <button mat-list-item class="menu-button">
+        <mat-icon mat-list-icon>pages</mat-icon> Pages
+        <mat-select disableRipple>
+          <mat-option routerLink="/admin/user-list">Users</mat-option>
+          <mat-option routerLink="/admin/profile">Profile</mat-option>
+          <mat-option value="3">Option 3</mat-option>
+        </mat-select>
+      </button>
+      <button routerLink="/admin" mat-list-item class="menu-button">
+        <mat-icon mat-list-icon>settings</mat-icon> Settings
+      </button>
+      <button (click)="logout()" mat-list-item class="menu-button">
+        <mat-icon mat-list-icon>logout</mat-icon> Logout
+      </button>
+    </mat-list>
+  </div>
 </div>

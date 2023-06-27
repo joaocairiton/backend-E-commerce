@@ -19,7 +19,7 @@ export class AdminComponent implements OnInit {
         this.sidenav.close()
       }
       else{
-        this.sidenav.mode = 'side';
+        this.sidenav.mode ='side';
         this.sidenav.open()
       }
     })

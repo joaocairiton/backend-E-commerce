@@ -1,0 +1,52 @@
+
+  <div mat-dialog-title>
+    <h1>User</h1>
+  </div>
+
+
+    <form [formGroup]=" empForm" (ngSubmit)="onFormSubmit()">
+   
+    
+   
+        <mat-form-field appearance="outline" class="item-1">
+          <mat-label>User-Name</mat-label>
+          <input formControlName="username" matInput placeholder="User-Name" >
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+
+        <mat-form-field type="password" name="password" appearance="outline" class="item-2">
+          <mat-label>Password</mat-label>
+          <input formControlName="password" matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+   
+        <mat-form-field  appearance="outline" class="item-3">
+          <mat-label>Name Complete</mat-label>
+          <input formControlName="name" matInput placeholder="Name Complete">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="item-4">
+          <mat-label>Enter your email</mat-label>
+          <input formControlName="email" matInput placeholder="Enter your email">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="item-5">
+          <mat-label>Phone number</mat-label>
+          <input formControlName="telefone" matInput placeholder="Phone number">
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+   
+      
+     
+        <div mat-dialog-actions class="action">
+          <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+          <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>
+        </div>
+ 
+   
+    </form>
+ 
+  

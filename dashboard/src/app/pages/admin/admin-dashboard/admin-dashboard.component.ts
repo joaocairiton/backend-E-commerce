@@ -23,6 +23,8 @@ export class AdminDashboardComponent implements OnInit {
     )
   }
 
+  
+
   public logout(){
     this.login.logout();
     window.location.reload();

@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cairiton.model.Rol;
@@ -48,10 +46,17 @@ public class UserController {
 
 	}
 
-	 @GetMapping("/{username}")
-	    public User getuser(@PathVariable("username") String username){
-	        return userService.getUser(username);
-	    }
+	/*
+	 * @GetMapping("/{username}") public User getuser(@PathVariable("username")
+	 * String username){ return userService.getUser(username); }
+	 */
+	 @GetMapping("/{userId}")
+		public ResponseEntity<User> getUser(@PathVariable Long userId) {
+			return userRepository.findById(userId)			
+					.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+		}
+	 
+	 
 
 	 @PostMapping("/")
 	 public User saveUser(@RequestBody User user) throws Exception{
@@ -71,33 +76,40 @@ public class UserController {
 	        return userService.saveUser(user,userRoles);
 	    }
 	
+	 @PutMapping("/{id}")
+		public ResponseEntity<User> updateUser(@PathVariable Long id,@Valid @RequestBody User user){
+			
+			if (!userRepository.existsById(id)) {
+				return ResponseEntity.notFound().build();
+			}
+			user.setId(id);
+			user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
+			user = userRepository.save(user);
+			
+			
+			return ResponseEntity.ok(user);
+		}
 
 		 
-		 @PutMapping("/{userId}")
-			public ResponseEntity<User> updateUser(@PathVariable Long userId,@Valid @RequestBody User user){
-				
-				if (!userRepository.existsById(userId)) {
-					return ResponseEntity.notFound().build();
-				}
-				user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
-				
-				Set<UserRol> userRoles = new HashSet<>();
-
-		        Rol rol = new Rol();
-		        rol.setRolId(2L);
-		        rol.setRolName("NORMAL");
-		        
-		        UserRol userRol = new UserRol();
-		        userRol.setUser(user);
-		        userRol.setRol(rol);
-
-		        
-				user.setId(userId);
-				user = userRepository.save(user);
-				
-				userRoles.add(userRol);
-				return ResponseEntity.ok(user);
-			}
+		/*
+		 * @PutMapping("/{userId}") public ResponseEntity<User> updateUser(@PathVariable
+		 * Long userId,@Valid @RequestBody User user){
+		 * 
+		 * if (!userRepository.existsById(userId)) { return
+		 * ResponseEntity.notFound().build(); }
+		 * user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
+		 * 
+		 * Set<UserRol> userRoles = new HashSet<>();
+		 * 
+		 * Rol rol = new Rol(); rol.setRolId(2L); rol.setRolName("NORMAL");
+		 * 
+		 * UserRol userRol = new UserRol(); userRol.setUser(user); userRol.setRol(rol);
+		 * 
+		 * 
+		 * user.setId(userId); user = userRepository.save(user);
+		 * 
+		 * userRoles.add(userRol); return ResponseEntity.ok(user); }
+		 */
 	
 		@DeleteMapping("/{userId}")
 		public ResponseEntity<Void> delete(@PathVariable Long userId) {
